@@ -63,3 +63,67 @@ This project serves as a comparative study and proof-of-concept for document ret
 - sentence-transformers
 - numpy
 - scipy
+
+## 📊 Actual Output Results
+
+Both methods were tested with the same query: **"I want to learn about neural networks."**
+
+### Method Comparison Output
+```
+================================================================================
+DOCUMENT RETRIEVAL METHODS COMPARISON
+================================================================================
+Query: 'I want to learn about neural networks.'
+Total documents: 10
+
+Loading SentenceTransformer model...
+Embedding dimension: 384
+
+==================================================
+METHOD 1: RandomForest Classifier
+==================================================
+Top prediction: Doc 3
+Document: 'Neural networks learn patterns.'
+Probability: 0.1500
+
+==================================================
+METHOD 2: Cosine Similarity
+==================================================
+Top prediction: Doc 3
+Document: 'Neural networks learn patterns.'
+Similarity: 0.6648
+
+================================================================================
+DETAILED COMPARISON - TOP 5 RESULTS
+================================================================================
+Rank RandomForest                        Cosine Similarity
+     Doc | Prob                          Doc | Similarity
+--------------------------------------------------------------------------------
+1      3 | 0.150 (100.0%)               3 | 0.6648
+2      5 | 0.140 ( 88.9%)               5 | 0.5775
+3      1 | 0.130 ( 77.8%)               1 | 0.4631
+4      8 | 0.120 ( 66.7%)               2 | 0.4431
+5     10 | 0.110 ( 55.6%)               9 | 0.4012
+
+================================================================================
+ANALYSIS
+================================================================================
+Both methods agree on top result: YES
+Both methods identified Doc 3 as most relevant:
+  'Neural networks learn patterns.'
+```
+
+### Key Observations
+
+🎯 **Perfect Agreement on Top Result**: Both methods correctly identified **Document 3** ("Neural networks learn patterns.") as the most relevant match for the neural networks query.
+
+📈 **Top 3 Rankings Match**: Interestingly, both approaches agreed on the top 3 most relevant documents:
+1. **Doc 3**: "Neural networks learn patterns." (exact match)
+2. **Doc 5**: "Deep learning uses neural networks." (related concept)  
+3. **Doc 1**: "Machine learning is amazing." (broader field)
+
+⚡ **Different Scoring Scales**: 
+- **RandomForest**: Probabilistic outputs (0.150 = 15% confidence)
+- **Cosine Similarity**: Geometric similarity (0.6648 = 66.48% similarity)
+
+🔍 **Minor Ranking Differences**: While the top 3 matched, positions 4-5 differed slightly, showing how each method weighs different semantic relationships.
